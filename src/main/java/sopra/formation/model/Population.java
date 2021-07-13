@@ -47,6 +47,19 @@ public class Population {
 	@JoinColumn(name="historique_id")
 	private Historique historiques;
 	
+	@ManyToOne
+	@JoinTable(name = "population_Simulation", joinColumns = @JoinColumn(name = "population_id"), inverseJoinColumns = @JoinColumn(name = "simulation_id"), uniqueConstraints = @UniqueConstraint(columnNames = {
+			"population_id", "simulation_id" }))
+	private Simulation simulation;
+	
+	@OneToOne
+	@JoinColumn(name="environnement_id")
+	private Environnement environnement; 
+	
+	@OneToOne
+	@JoinColumn(name="simulation_id")
+	private Simulation simul;
+	
 	@Enumerated(EnumType.STRING)
 	private TypePopulation type;
 	
