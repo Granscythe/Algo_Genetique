@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 @Entity
-@Table(name = "Population")
+@Table(name = "Historique")
 public class Historique {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

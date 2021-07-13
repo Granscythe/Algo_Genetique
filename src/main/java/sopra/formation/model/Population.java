@@ -48,17 +48,13 @@ public class Population {
 	private Historique historiques;
 	
 	@ManyToOne
-	@JoinTable(name = "population_Simulation", joinColumns = @JoinColumn(name = "population_id"), inverseJoinColumns = @JoinColumn(name = "simulation_id"), uniqueConstraints = @UniqueConstraint(columnNames = {
-			"population_id", "simulation_id" }))
+	@JoinColumn(name="simulation_id")
 	private Simulation simulation;
 	
 	@OneToOne
 	@JoinColumn(name="environnement_id")
 	private Environnement environnement; 
 	
-	@OneToOne
-	@JoinColumn(name="simulation_id")
-	private Simulation simul;
 	
 	@Enumerated(EnumType.STRING)
 	private TypePopulation type;
@@ -145,13 +141,7 @@ public void setEnvironnement(Environnement environnement) {
 	this.environnement = environnement;
 }
 
-public Simulation getSimul() {
-	return simul;
-}
 
-public void setSimul(Simulation simul) {
-	this.simul = simul;
-}
 
 
 

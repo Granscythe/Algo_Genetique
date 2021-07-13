@@ -8,7 +8,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 import sopra.formation.app.Application;
-import sopra.formation.model.Environnement;
 import sopra.formation.model.Simulation;
 import sopra.formation.repository.ISimulationRepository;
 
