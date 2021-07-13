@@ -8,19 +8,20 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 import sopra.formation.app.Application;
-import sopra.formation.model.Population;
-import sopra.formation.repository.IPopulationRepository;
+import sopra.formation.model.Historique;
+import sopra.formation.repository.IHistoriqueRepository;
 
-public class PopulationRepositoryJpa implements IPopulationRepository {
+public class HistoriqueRepositoryJpa implements IHistoriqueRepository {
 
 	
 	
-//////////////////////////////// CRUD //////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////////////////
+	
+///////////////////////////////////////// CRUD ///////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////////
 	
 	@Override
-	public List<Population> findAll() {
-		List<Population> populations = new ArrayList<Population>();
+	public List<Historique> findAll() {
+		List<Historique> historiques = new ArrayList<Historique>();
 
 		EntityManager em = null;
 		EntityTransaction tx = null;
@@ -30,9 +31,9 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 			tx = em.getTransaction();
 			tx.begin();
 
-			TypedQuery<Population> query = em.createQuery("select p from Population p", Population.class);
+			TypedQuery<Historique> query = em.createQuery("select c from Historique c", Historique.class);
 
-			populations = query.getResultList();
+			historiques = query.getResultList();
 
 			tx.commit();
 		} catch (Exception e) {
@@ -47,12 +48,12 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 			}
 		}
 
-		return populations;
+		return historiques;
 	}
 
 	@Override
-	public Population findById(Long id) {
-		Population population = null;
+	public Historique findById(Long id) {
+		Historique historique = null;
 
 		EntityManager em = null;
 		EntityTransaction tx = null;
@@ -62,7 +63,7 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 			tx = em.getTransaction();
 			tx.begin();
 
-			population = em.find(Population.class, id);
+			historique = em.find(Historique.class, id);
 
 			tx.commit();
 		} catch (Exception e) {
@@ -77,11 +78,11 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 			}
 		}
 
-		return population;
+		return historique;
 	}
 
 	@Override
-	public Population save(Population obj) {
+	public Historique save(Historique obj) {
 		EntityManager em = null;
 		EntityTransaction tx = null;
 
@@ -109,7 +110,7 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 	}
 
 	@Override
-	public void delete(Population obj) {
+	public void delete(Historique obj) {
 		EntityManager em = null;
 		EntityTransaction tx = null;
 
@@ -134,7 +135,8 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 		}
 	}
 	
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////
+
 
 }

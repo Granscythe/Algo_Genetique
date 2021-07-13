@@ -8,19 +8,18 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 import sopra.formation.app.Application;
+import sopra.formation.model.Creature;
 import sopra.formation.model.Population;
-import sopra.formation.repository.IPopulationRepository;
+import sopra.formation.repository.ICreatureRepository;
 
-public class PopulationRepositoryJpa implements IPopulationRepository {
+public class CreatureRepositoryJpa implements ICreatureRepository {
 
-	
-	
-//////////////////////////////// CRUD //////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////////////////
+/////////////////////////////////// CRUD /////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////
 	
 	@Override
-	public List<Population> findAll() {
-		List<Population> populations = new ArrayList<Population>();
+	public List<Creature> findAll() {
+		List<Creature> creatures = new ArrayList<Creature>();
 
 		EntityManager em = null;
 		EntityTransaction tx = null;
@@ -30,9 +29,9 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 			tx = em.getTransaction();
 			tx.begin();
 
-			TypedQuery<Population> query = em.createQuery("select p from Population p", Population.class);
+			TypedQuery<Creature> query = em.createQuery("select c from Creature c", Creature.class);
 
-			populations = query.getResultList();
+			creatures = query.getResultList();
 
 			tx.commit();
 		} catch (Exception e) {
@@ -47,12 +46,12 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 			}
 		}
 
-		return populations;
+		return creatures;
 	}
 
 	@Override
-	public Population findById(Long id) {
-		Population population = null;
+	public Creature findById(Long id) {
+		Creature creature = null;
 
 		EntityManager em = null;
 		EntityTransaction tx = null;
@@ -62,7 +61,7 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 			tx = em.getTransaction();
 			tx.begin();
 
-			population = em.find(Population.class, id);
+			creature = em.find(Creature.class, id);
 
 			tx.commit();
 		} catch (Exception e) {
@@ -77,11 +76,11 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 			}
 		}
 
-		return population;
+		return creature;
 	}
 
 	@Override
-	public Population save(Population obj) {
+	public Creature save(Creature obj) {
 		EntityManager em = null;
 		EntityTransaction tx = null;
 
@@ -109,7 +108,7 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 	}
 
 	@Override
-	public void delete(Population obj) {
+	public void delete(Creature obj) {
 		EntityManager em = null;
 		EntityTransaction tx = null;
 
@@ -134,7 +133,7 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 		}
 	}
 	
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////
 
 }
