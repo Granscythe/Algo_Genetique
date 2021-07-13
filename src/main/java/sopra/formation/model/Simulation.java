@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -39,8 +40,8 @@ public class Simulation {
 	private List<ParametresGenetiques> parametresGenetiques= new ArrayList<ParametresGenetiques>();
 	@OneToMany(mappedBy= "simulation")
 	private List<Population> populations= new ArrayList<Population>();
-	@OneToOne(mappedBy= "simulation_id")
-	private List<Historique> historiques= new ArrayList<Historique>();
+	@OneToOne(mappedBy= "simulations")
+	private Historique historiques;
 	
 	public Simulation() {
 		super();
@@ -112,13 +113,27 @@ public class Simulation {
 		this.populations = populations;
 	}
 
-	public List<Historique> getHistoriques() {
+	public Historique getHistoriques() {
 		return historiques;
 	}
 
-	public void setHistoriques(List<Historique> historiques) {
+	public void setHistoriques(Historique historiques) {
 		this.historiques = historiques;
 	}
+
+	
+	
+	public int getVersion() {
+		return version;
+	}
+
+
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+
 
 	@Override
 	public String toString() {

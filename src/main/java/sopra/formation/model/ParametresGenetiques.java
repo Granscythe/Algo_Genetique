@@ -27,8 +27,8 @@ public class ParametresGenetiques {
 	private int version;
 	@Column
 	private int tauxMutation;
-	@Enumerated(EnumType.STRING)
-	private TransmissionGene gene;
+	@Column
+	private double transmission;
 	@Enumerated(EnumType.STRING)
 	private TypeMutation mutation;
 	
@@ -64,13 +64,23 @@ public class ParametresGenetiques {
 
 	public void setTauxMutation(int tauxMutation) {	this.tauxMutation = tauxMutation;}
 
-	public TransmissionGene getGene() {	return gene;}
 
-	public void setGene(TransmissionGene gene) {this.gene = gene;}
+	public double getTransmission() {return transmission;}
+
+	public void setTransmission(double transmission) {this.transmission = transmission;	}
 
 	public TypeMutation getMutation() {	return mutation;}
 
 	public void setMutation(TypeMutation mutation) {this.mutation = mutation;}
+
+	public Simulation getSimulation() {
+		return simulation;
+	}
+
+	public void setSimulation(Simulation simulation) {
+		this.simulation = simulation;
+	}
+	
 	
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -105,6 +105,56 @@ public TypePopulation getType() {return type;}
 
 public void setType(TypePopulation type) {this.type = type;}
 
+public List<Creature> getPopulationCreatures() {
+	return populationCreatures;
+}
+
+public void setPopulationCreatures(List<Creature> populationCreatures) {
+	this.populationCreatures = populationCreatures;
+}
+
+public ParametresGenetiques getParametres() {
+	return parametres;
+}
+
+public void setParametres(ParametresGenetiques parametres) {
+	this.parametres = parametres;
+}
+
+public Historique getHistoriques() {
+	return historiques;
+}
+
+public void setHistoriques(Historique historiques) {
+	this.historiques = historiques;
+}
+
+public Simulation getSimulation() {
+	return simulation;
+}
+
+public void setSimulation(Simulation simulation) {
+	this.simulation = simulation;
+}
+
+public Environnement getEnvironnement() {
+	return environnement;
+}
+
+public void setEnvironnement(Environnement environnement) {
+	this.environnement = environnement;
+}
+
+public Simulation getSimul() {
+	return simul;
+}
+
+public void setSimul(Simulation simul) {
+	this.simul = simul;
+}
+
+
+
  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  
 }

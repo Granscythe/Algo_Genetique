@@ -42,7 +42,7 @@ public class Environnement {
 	@ManyToOne
 	@JoinColumn(name = "historique")
 	private Historique historique;
-	@OneToOne(mappedBy= "environement_id")
+	@OneToOne(mappedBy= "environnement")
 	private Population population;
 
 	public Environnement() {

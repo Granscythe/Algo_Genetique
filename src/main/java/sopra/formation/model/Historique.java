@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -27,6 +29,9 @@ public class Historique {
 	@OneToMany(mappedBy="historiques")
 	private List<Population> populations = new ArrayList<Population>();
 	
+	@OneToOne
+	@JoinColumn(name="simulation_id")
+	private Simulation simulations;
 	
 ////////////////////////Constructor///////////////////////////////////
 	
@@ -55,6 +60,27 @@ public class Historique {
 
 
 	public void setGenerationPop(int generationPop) {this.generationPop = generationPop;}
+
+
+	public List<Population> getPopulations() {
+		return populations;
+	}
+
+
+	public void setPopulations(List<Population> populations) {
+		this.populations = populations;
+	}
+
+
+	public Simulation getSimulations() {
+		return simulations;
+	}
+
+
+	public void setSimulations(Simulation simulations) {
+		this.simulations = simulations;
+	}
+	
 	
 	///////////////////////////////////////////////////////////////////////////////////////
 	
