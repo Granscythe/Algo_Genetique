@@ -1,5 +1,8 @@
 package sopra.formation.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,7 +10,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
 
 @Entity
@@ -24,9 +33,22 @@ public class Population {
 	private int limiteVision;
 	@Column 
 	private int limiteTaille;
+	
+	@ManyToMany
+	@JoinTable(name = "popCreature", joinColumns = @JoinColumn(name = "generation_id"), inverseJoinColumns = @JoinColumn(name = "creature_id"), uniqueConstraints = @UniqueConstraint(columnNames = {
+			"generation_id", "creature_id" }))
+	private List<Creature> populationCreatures = new ArrayList<Creature>();
+	
+	@OneToOne
+	@JoinColumn(name="parametres_id")
+	private ParametresGenetiques parametres;
+	
+	@ManyToOne
+	@JoinColumn(name="historique_id")
+	private Historique historiques;
+	
 	@Enumerated(EnumType.STRING)
 	private TypePopulation type;
-	
 	
 ////////////////Constructeur Vide/////////////////////
 	

@@ -1,5 +1,8 @@
 package sopra.formation.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -44,6 +48,10 @@ public class Creature {
 	private Creature mere;
 	@Column
 	private int generationMort;
+	@ManyToMany(mappedBy = "populationCreatures")
+	private List<Population> populations = new ArrayList<Population>();
+	
+	
 	
 /////Constructor vide////////////////////////
 	
