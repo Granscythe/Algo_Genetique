@@ -60,9 +60,6 @@ public class ParametresGenetiques {
 
 	public void setTauxMutation(int tauxMutation) {	this.tauxMutation = tauxMutation;}
 
-
-	public void setGene(TransmissionGene gene) {this.gene = gene;}
-
 	public TypeMutation getMutation() {	return mutation;}
 
 	public void setMutation(TypeMutation mutation) {this.mutation = mutation;}

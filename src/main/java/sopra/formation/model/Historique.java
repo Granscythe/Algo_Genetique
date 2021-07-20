@@ -28,16 +28,13 @@ public class Historique {
 	private int generationPop;
 	@OneToMany(mappedBy="historiques")
 	private List<Population> populations = new ArrayList<Population>();
-<<<<<<< Updated upstream
 	
 	@OneToOne
 	@JoinColumn(name="simulation_id")
 	private Simulation simulations;
-=======
 	@OneToOne
 	@JoinColumn(name = "simulation")
 	private Simulation simulation;
->>>>>>> Stashed changes
 	
 ////////////////////////Constructor///////////////////////////////////
 	
