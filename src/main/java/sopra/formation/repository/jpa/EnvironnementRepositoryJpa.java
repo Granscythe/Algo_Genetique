@@ -8,19 +8,14 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 import sopra.formation.app.Application;
-import sopra.formation.model.Population;
-import sopra.formation.repository.IPopulationRepository;
+import sopra.formation.model.Environnement;
+import sopra.formation.repository.IEnvironnementRepository;
 
-public class PopulationRepositoryJpa implements IPopulationRepository {
+public class EnvironnementRepositoryJpa implements IEnvironnementRepository{
 
-	
-	
-//////////////////////////////// CRUD //////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////////////////
-	
 	@Override
-	public List<Population> findAll() {
-		List<Population> populations = new ArrayList<Population>();
+	public List<Environnement> findAll() {
+		List<Environnement> environnements = new ArrayList<Environnement>();
 
 		EntityManager em = null;
 		EntityTransaction tx = null;
@@ -30,9 +25,9 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 			tx = em.getTransaction();
 			tx.begin();
 
-			TypedQuery<Population> query = em.createQuery("select p from Population p", Population.class);
+			TypedQuery<Environnement> query = em.createQuery("select e from Environnement e", Environnement.class);
 
-			populations = query.getResultList();
+			environnements = query.getResultList();
 
 			tx.commit();
 		} catch (Exception e) {
@@ -47,12 +42,12 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 			}
 		}
 
-		return populations;
+		return environnements;
 	}
 
 	@Override
-	public Population findById(Long id) {
-		Population population = null;
+	public Environnement findById(Integer id) {
+		 Environnement environnement = null;
 
 		EntityManager em = null;
 		EntityTransaction tx = null;
@@ -62,7 +57,7 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 			tx = em.getTransaction();
 			tx.begin();
 
-			population = em.find(Population.class, id);
+			environnement = em.find(Environnement.class, id);
 
 			tx.commit();
 		} catch (Exception e) {
@@ -77,11 +72,12 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 			}
 		}
 
-		return population;
+		return environnement;
 	}
 
+
 	@Override
-	public Population save(Population obj) {
+	public Environnement save(Environnement obj) {
 		EntityManager em = null;
 		EntityTransaction tx = null;
 
@@ -109,7 +105,7 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 	}
 
 	@Override
-	public void delete(Population obj) {
+	public void delete(Environnement obj) {
 		EntityManager em = null;
 		EntityTransaction tx = null;
 
@@ -133,8 +129,5 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 			}
 		}
 	}
-	
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/////////////////////////////////////////////////////////////////////////////////////////////////
 
 }

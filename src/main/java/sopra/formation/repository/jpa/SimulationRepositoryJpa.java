@@ -8,19 +8,14 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 import sopra.formation.app.Application;
-import sopra.formation.model.Population;
-import sopra.formation.repository.IPopulationRepository;
+import sopra.formation.model.Simulation;
+import sopra.formation.repository.ISimulationRepository;
 
-public class PopulationRepositoryJpa implements IPopulationRepository {
+public class SimulationRepositoryJpa implements ISimulationRepository {
 
-	
-	
-//////////////////////////////// CRUD //////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////////////////
-	
 	@Override
-	public List<Population> findAll() {
-		List<Population> populations = new ArrayList<Population>();
+	public List<Simulation> findAll() {
+		List<Simulation> simulations = new ArrayList<Simulation>();
 
 		EntityManager em = null;
 		EntityTransaction tx = null;
@@ -30,9 +25,9 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 			tx = em.getTransaction();
 			tx.begin();
 
-			TypedQuery<Population> query = em.createQuery("select p from Population p", Population.class);
+			TypedQuery<Simulation> query = em.createQuery("select s from Simulation s",Simulation.class);
 
-			populations = query.getResultList();
+			 simulations  = query.getResultList();
 
 			tx.commit();
 		} catch (Exception e) {
@@ -47,41 +42,41 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 			}
 		}
 
-		return populations;
+		return  simulations ;
 	}
 
 	@Override
-	public Population findById(Long id) {
-		Population population = null;
+	public Simulation findById(Integer id) {
+		 Simulation  simulations = null;
 
-		EntityManager em = null;
-		EntityTransaction tx = null;
+			EntityManager em = null;
+			EntityTransaction tx = null;
 
-		try {
-			em = Application.getInstance().getEntityManagerFactory().createEntityManager();
-			tx = em.getTransaction();
-			tx.begin();
+			try {
+				em = Application.getInstance().getEntityManagerFactory().createEntityManager();
+				tx = em.getTransaction();
+				tx.begin();
 
-			population = em.find(Population.class, id);
+				 simulations = em.find( Simulation.class, id);
 
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
+				tx.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+				if (tx != null && tx.isActive()) {
+					tx.rollback();
+				}
+
+			} finally {
+				if (em != null) {
+					em.close();
+				}
 			}
 
-		} finally {
-			if (em != null) {
-				em.close();
-			}
+			return  simulations;
 		}
 
-		return population;
-	}
-
 	@Override
-	public Population save(Population obj) {
+	public Simulation save(Simulation obj) {
 		EntityManager em = null;
 		EntityTransaction tx = null;
 
@@ -108,8 +103,9 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 		return obj;
 	}
 
+
 	@Override
-	public void delete(Population obj) {
+	public void delete(Simulation obj) {
 		EntityManager em = null;
 		EntityTransaction tx = null;
 
@@ -133,8 +129,6 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 			}
 		}
 	}
-	
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/////////////////////////////////////////////////////////////////////////////////////////////////
 
+	
 }

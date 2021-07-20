@@ -8,19 +8,14 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 import sopra.formation.app.Application;
-import sopra.formation.model.Population;
-import sopra.formation.repository.IPopulationRepository;
+import sopra.formation.model.User;
+import sopra.formation.repository.IUserRepository;
 
-public class PopulationRepositoryJpa implements IPopulationRepository {
+public class UserRepositoryJpa implements IUserRepository {
 
-	
-	
-//////////////////////////////// CRUD //////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////////////////
-	
 	@Override
-	public List<Population> findAll() {
-		List<Population> populations = new ArrayList<Population>();
+	public List<User> findAll() {
+		List<User> users = new ArrayList<User>();
 
 		EntityManager em = null;
 		EntityTransaction tx = null;
@@ -30,9 +25,9 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 			tx = em.getTransaction();
 			tx.begin();
 
-			TypedQuery<Population> query = em.createQuery("select p from Population p", Population.class);
+			TypedQuery<User> query = em.createQuery("select u from User u", User.class);
 
-			populations = query.getResultList();
+			users = query.getResultList();
 
 			tx.commit();
 		} catch (Exception e) {
@@ -47,41 +42,41 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 			}
 		}
 
-		return populations;
+		return users;
 	}
 
 	@Override
-	public Population findById(Long id) {
-		Population population = null;
+	public User findById(Integer id) {
+		User  users = null;
 
-		EntityManager em = null;
-		EntityTransaction tx = null;
+			EntityManager em = null;
+			EntityTransaction tx = null;
 
-		try {
-			em = Application.getInstance().getEntityManagerFactory().createEntityManager();
-			tx = em.getTransaction();
-			tx.begin();
+			try {
+				em = Application.getInstance().getEntityManagerFactory().createEntityManager();
+				tx = em.getTransaction();
+				tx.begin();
 
-			population = em.find(Population.class, id);
+				users = em.find( User.class, id);
 
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
+				tx.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+				if (tx != null && tx.isActive()) {
+					tx.rollback();
+				}
+
+			} finally {
+				if (em != null) {
+					em.close();
+				}
 			}
 
-		} finally {
-			if (em != null) {
-				em.close();
-			}
+			return users;
 		}
 
-		return population;
-	}
-
 	@Override
-	public Population save(Population obj) {
+	public User save(User obj) {
 		EntityManager em = null;
 		EntityTransaction tx = null;
 
@@ -108,8 +103,9 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 		return obj;
 	}
 
+
 	@Override
-	public void delete(Population obj) {
+	public void delete(User obj) {
 		EntityManager em = null;
 		EntityTransaction tx = null;
 
@@ -133,8 +129,5 @@ public class PopulationRepositoryJpa implements IPopulationRepository {
 			}
 		}
 	}
-	
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/////////////////////////////////////////////////////////////////////////////////////////////////
 
 }
