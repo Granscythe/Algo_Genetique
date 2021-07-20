@@ -52,7 +52,7 @@ public class Population {
 	private Simulation simulation;
 	
 	@OneToOne
-	@JoinColumn(name="environnement_id")
+	@JoinColumn(name="environnement")
 	private Environnement environnement; 
 	
 	
