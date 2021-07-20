@@ -5,13 +5,15 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
 
 @Entity
@@ -22,31 +24,38 @@ public class Creature {
 	private Long id;
 	@Version
 	private int version;
-	@Column
+	@Column(name="vitesse")
 	private int vitesse;
-	@Column
+	@Column(name="vision")
 	private int vision;
-	@Column
+	@Column(name="taille")
 	private int taille;
-	@Column
+	@Column(name="endurance")
 	private int endurance;
-	@Column
+	@Column(name="besoinNourriture")
 	private int besoinNourriture;
 	
-	@Column
+	@Column(name="estomac")
 	private int estomac;
-	@Column
+	@Column(name="posX")
 	private int posX;
-	@Column
+	@Column(name="posY")
 	private int posY;
 	
-	@Column
+	@Column(name="statut")
 	private boolean statut;
-	@Column
+	
+	@OneToOne
+	@JoinTable(name = "parents_id", joinColumns = @JoinColumn(name = "pere_id"), inverseJoinColumns = @JoinColumn(name = "mere_id"), uniqueConstraints = @UniqueConstraint(columnNames = {
+			"pere_id", "mere_id" }))
 	private Creature pere;
-	@Column 
+	
+	@OneToOne(mappedBy="pere")
 	private Creature mere;
-	@Column
+	
+	//@Column (name="mere")
+	//private Creature mere;
+	@Column(name="generationmort")
 	private int generationMort;
 	@ManyToMany(mappedBy = "populationCreatures")
 	private List<Population> populations = new ArrayList<Population>();
@@ -73,8 +82,7 @@ public class Creature {
 		this.vitesse=vitesse;
 		this.vision=vision;
 		this.taille=taille;
-		this.endurance=endurance;
-		this.besoinNourriture=besoinNourriture;
+		
 	}
 
 //////////////////////////////GETTER SETTER//////////////////////////////////////////////////////////////////////////////////
@@ -123,17 +131,27 @@ public class Creature {
 
 	public void setStatut(boolean statut) {	this.statut = statut;}
 
-	public Creature getPere() {	return pere;}
+	//public Creature getPere() {	return pere;}
 
-	public void setPere(Creature pere) {this.pere = pere;}
+	//public void setPere(Creature pere) {this.pere = pere;}
 
-	public Creature getMere() {	return mere;}
+	//public Creature getMere() {	return mere;}
 
-	public void setMere(Creature mere) {this.mere = mere;}
+	//public void setMere(Creature mere) {this.mere = mere;}
 
 	public int getGenerationMort() {return generationMort;}
 
-	public void setGenerationMort(int generationMort) {	this.generationMort = generationMort;}	
+	public void setGenerationMort(int generationMort) {	this.generationMort = generationMort;}
+
+	public List<Population> getPopulations() {
+		return populations;
+	}
+
+	public void setPopulations(List<Population> populations) {
+		this.populations = populations;
+	}	
+	
+	
 	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	

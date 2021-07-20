@@ -9,7 +9,6 @@ import javax.persistence.TypedQuery;
 
 import sopra.formation.app.Application;
 import sopra.formation.model.ParametresGenetiques;
-import sopra.formation.model.Population;
 import sopra.formation.repository.IParametresGenetiquesRepository;
 
 public class ParametresGenetiquesRepositoryJpa implements IParametresGenetiquesRepository {

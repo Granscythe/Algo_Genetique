@@ -9,7 +9,6 @@ import javax.persistence.TypedQuery;
 
 import sopra.formation.app.Application;
 import sopra.formation.model.Creature;
-import sopra.formation.model.Population;
 import sopra.formation.repository.ICreatureRepository;
 
 public class CreatureRepositoryJpa implements ICreatureRepository {
