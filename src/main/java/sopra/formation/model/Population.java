@@ -48,17 +48,13 @@ public class Population {
 	private Historique historiques;
 	
 	@ManyToOne
-	@JoinTable(name = "population_Simulation", joinColumns = @JoinColumn(name = "population_id"), inverseJoinColumns = @JoinColumn(name = "simulation_id"), uniqueConstraints = @UniqueConstraint(columnNames = {
-			"population_id", "simulation_id" }))
+	@JoinColumn(name="simulation_id")
 	private Simulation simulation;
 	
 	@OneToOne
 	@JoinColumn(name="environnement_id")
 	private Environnement environnement; 
 	
-	@OneToOne
-	@JoinColumn(name="simulation_id")
-	private Simulation simul;
 	
 	@Enumerated(EnumType.STRING)
 	private TypePopulation type;
@@ -104,6 +100,50 @@ public void setLimiteTaille(int limiteTaille) {
 public TypePopulation getType() {return type;}
 
 public void setType(TypePopulation type) {this.type = type;}
+
+public List<Creature> getPopulationCreatures() {
+	return populationCreatures;
+}
+
+public void setPopulationCreatures(List<Creature> populationCreatures) {
+	this.populationCreatures = populationCreatures;
+}
+
+public ParametresGenetiques getParametres() {
+	return parametres;
+}
+
+public void setParametres(ParametresGenetiques parametres) {
+	this.parametres = parametres;
+}
+
+public Historique getHistoriques() {
+	return historiques;
+}
+
+public void setHistoriques(Historique historiques) {
+	this.historiques = historiques;
+}
+
+public Simulation getSimulation() {
+	return simulation;
+}
+
+public void setSimulation(Simulation simulation) {
+	this.simulation = simulation;
+}
+
+public Environnement getEnvironnement() {
+	return environnement;
+}
+
+public void setEnvironnement(Environnement environnement) {
+	this.environnement = environnement;
+}
+
+
+
+
 
  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  
